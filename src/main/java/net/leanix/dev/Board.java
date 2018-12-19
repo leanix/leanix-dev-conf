@@ -1,7 +1,9 @@
 package net.leanix.dev;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 public class Board implements ReadOnlyBoard {
     private BoardConstants[][] data;
@@ -43,12 +45,55 @@ public class Board implements ReadOnlyBoard {
     }
 
     @Override
-    public Optional<Character> get(int row, int col) {
+    public Optional<BoardConstants> get(int row, int col) {
         throw new RuntimeException();
     }
 
-    public Optional<Character> determineWinner() {
-        throw new RuntimeException();
+    public Optional<BoardConstants> determineWinner() {
+        List<BoardConstants> playerStates = Arrays.asList(BoardConstants.PLAYER_ONE, BoardConstants.PLAYER_TWO);
+        for (BoardConstants state : playerStates) {
+            if (matchHorizontal(state) || matchVertical(state) || matchDiagonal(state)) {
+                return Optional.of(state);
+            }
+        }
+        return Optional.empty();
     }
 
+    private boolean matchHorizontal(BoardConstants state) {
+        for (BoardConstants[] row : data) {
+            boolean result = Arrays.stream(row).allMatch(elementState -> elementState.equals(state));
+            if (result) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    BoardConstants[] getCol(int col) {
+        BoardConstants[] result = new BoardConstants[3];
+        for (int row = 0; row < data.length; row++) {
+            result[row] = data[row][col];
+        }
+        return result;
+    }
+
+    private boolean matchVertical(BoardConstants state) {
+        for (int col = 0; col < data.length; col++) {
+            BoardConstants[] colElement = getCol(col);
+            boolean result = Arrays.stream(colElement).allMatch(elementState -> elementState.equals(state));
+            if (result) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean matchDiagonal(BoardConstants state) {
+        boolean result = IntStream.range(0, data.length).allMatch(i -> data[i][i].equals(state));
+        if (result) {
+            return true;
+        }
+
+        return IntStream.range(0, data.length).allMatch(i -> data[data.length - 1 - i][i].equals(state));
+    }
 }

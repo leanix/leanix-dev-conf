@@ -5,5 +5,5 @@ import java.util.Optional;
 public interface ReadOnlyBoard {
     String toString();
     boolean isFull();
-    Optional<Character> get(int row, int col);
+    Optional<BoardConstants> get(int row, int col);
 }

@@ -1,8 +1,6 @@
 package net.leanix.dev.tictactoe;
 
-import org.hamcrest.MatcherAssert;
 import org.junit.Test;
-import org.junit.matchers.JUnitMatchers;
 import sun.jvm.hotspot.utilities.Assert;
 
 import java.util.Optional;

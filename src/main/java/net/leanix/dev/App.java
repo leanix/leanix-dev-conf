@@ -13,28 +13,36 @@ public class App
     public static void main( String[] args )
     {
         ConsoleOutput output = new ConsoleOutput();
+        int[] wins = new int[3];
+        for (int i = 0; i < 100; i++) {
+            Player[] players = determinePlayers(args, output);
 
-        Player[] players = determinePlayers(args, output);
+            GameLogic gameLogic = new GameLogic();
 
-        GameLogic gameLogic = new GameLogic();
+            GameLogic.GameState gameState = gameLogic.runGame(players, output);
 
-        GameLogic.GameState gameState = gameLogic.runGame(players, output);
-
-        String finishingMessage;
-        switch (gameState) {
-            case WIN_PLAYER_1:
-                finishingMessage = "Player 1 won!";
-                break;
-            case WIN_PLAYER_2:
-                finishingMessage = "Player 2 won!";
-                break;
-            case DRAW:
-                finishingMessage = "It's a tie.";
-                break;
-            default:
-                throw new IllegalStateException("It can't happen here.");
+            String finishingMessage;
+            switch (gameState) {
+                case WIN_PLAYER_1:
+                    wins[1]++;
+                    finishingMessage = "Player 1 won!";
+                    break;
+                case WIN_PLAYER_2:
+                    wins[2]++;
+                    finishingMessage = "Player 2 won!";
+                    break;
+                case DRAW:
+                    wins[0]++;
+                    finishingMessage = "It's a tie.";
+                    break;
+                default:
+                    throw new IllegalStateException("It can't happen here.");
+            }
+            output.printMessage("\n" + finishingMessage);
+            output.printMessage("\nStarting again...");
         }
-        output.printMessage("\n" + finishingMessage);
+        output.printMessage("Player 1 won " + wins[1] + " and player 2 " +
+            wins[2] + " times. " + wins[0] + " games ended in a tie.");
     }
 
     public static Player[] determinePlayers(String[] args, ConsoleOutput output) {

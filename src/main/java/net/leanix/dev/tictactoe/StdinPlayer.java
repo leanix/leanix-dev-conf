@@ -61,7 +61,7 @@ public class StdinPlayer implements Player {
 
         int y;
         char yc = input.charAt(1);
-        switch (xc) {
+        switch (yc) {
             case '0':
                 y = 0;
                 break;

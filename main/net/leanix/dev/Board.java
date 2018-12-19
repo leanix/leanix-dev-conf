@@ -117,6 +117,13 @@ public class Board {
         this.boardState = boardState;
     }
 
+    public void setCell(int rowNum, int colNum, Cell cell) {
+        Preconditions.checkArgument(colNum < boardDimension && colNum>= 0);
+        Preconditions.checkArgument(rowNum < boardDimension && rowNum >= 0);
+
+        boardState[rowNum][colNum] = cell;
+    }
+
     public static class FinishedState {
 
         private final boolean isDraw;

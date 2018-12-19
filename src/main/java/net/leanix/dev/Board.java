@@ -99,7 +99,7 @@ public class Board implements ReadOnlyBoard {
     }
 
     BoardConstants[] getCol(int col) {
-        BoardConstants[] result = new BoardConstants[3];
+        BoardConstants[] result = new BoardConstants[data.length];
         for (int row = 0; row < data.length; row++) {
             result[row] = data[row][col];
         }

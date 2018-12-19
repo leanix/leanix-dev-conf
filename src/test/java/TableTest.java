@@ -38,4 +38,19 @@ public class TableTest {
                 + " | | \n"
             , result);
     }
+
+    @Test
+    public void multipleTableInsert()
+    {
+        table.insert(Player.PLAYER_ONE,0,0);
+        table.insert(Player.PLAYER_TWO,2,1);
+        String result = table.draw();
+        assertEquals(
+            " | | \n"
+                + "-+-+-\n"
+                + " | |o\n"
+                + "-+-+-\n"
+                + "x| | \n"
+            , result);
+    }
 }

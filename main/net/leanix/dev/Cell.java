@@ -1,9 +1,8 @@
 package net.leanix.dev;
 
-public class Cell {
-    public enum CellValue {
-        EMPTY,
-        CIRCLE,
-        CROSS
-    }
+public enum Cell {
+    EMPTY,
+    CIRCLE,
+    CROSS
 }
+

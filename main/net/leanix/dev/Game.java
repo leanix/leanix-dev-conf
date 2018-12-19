@@ -3,6 +3,7 @@ package net.leanix.dev;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 import net.leanix.dev.Board.FinishedState;
 
 public class Game {
@@ -10,9 +11,9 @@ public class Game {
     private Player currentPlayer;
     private InputHandler inputHandler;
     private Board board;
-    private Player computerPlayer;
+    private Set<Player> computerPlayer;
 
-    public Game(Player computerPlayer) {
+    public Game(Set<Player> computerPlayer) {
         Board board = new Board();
         this.inputHandler = new InputHandler(board);
         this.computerPlayer = computerPlayer;
@@ -61,7 +62,7 @@ public class Game {
     private void next() {
         System.out.println(currentPlayer + "'s turn");
         Entry<Integer, Integer> cellCoordinates;
-        if(currentPlayer == computerPlayer){
+        if(computerPlayer.contains(currentPlayer)){
             do{
                 cellCoordinates = CPU.chooseCellCoordinates();
             }while(board.isEmpty(cellCoordinates.getValue(), cellCoordinates.getKey()));

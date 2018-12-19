@@ -19,7 +19,13 @@ public class Table {
         return " ";
     }
 
-    public void insert(Player player, int column, int row) {
+    public boolean insert(Player player, int column, int row) {
+        if (table[column][row] != null) {
+            return false;
+        }
+
         table[column][row] = player;
+        return true;
     }
+
 }

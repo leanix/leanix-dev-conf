@@ -1,4 +1,6 @@
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +19,7 @@ public class TableTest {
     {
         String result = table.draw();
         assertEquals(
-                  " | | \n"
+            " | | \n"
                 + "-+-+-\n"
                 + " | | \n"
                 + "-+-+-\n"
@@ -28,10 +30,10 @@ public class TableTest {
     @Test
     public void tableInsert()
     {
-        table.insert(Player.PLAYER_ONE,1,1);
+        table.insert(Player.PLAYER_ONE, 1, 1);
         String result = table.draw();
         assertEquals(
-                  " | | \n"
+            " | | \n"
                 + "-+-+-\n"
                 + " |x| \n"
                 + "-+-+-\n"
@@ -42,8 +44,8 @@ public class TableTest {
     @Test
     public void multipleTableInsert()
     {
-        table.insert(Player.PLAYER_ONE,0,0);
-        table.insert(Player.PLAYER_TWO,2,1);
+        table.insert(Player.PLAYER_ONE, 0, 0);
+        table.insert(Player.PLAYER_TWO, 2, 1);
         String result = table.draw();
         assertEquals(
             " | | \n"
@@ -54,5 +56,10 @@ public class TableTest {
             , result);
     }
 
+    @Test
+    public void insertNonEmptyCell() {
+        assertTrue(table.insert(Player.PLAYER_ONE, 0, 0));
+        assertFalse(table.insert(Player.PLAYER_ONE, 0, 0));
+    }
 
 }

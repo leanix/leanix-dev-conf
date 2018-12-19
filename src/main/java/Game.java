@@ -33,8 +33,8 @@ public class Game {
         }
     }
 
-    public void printTable() {
-        System.out.println(table.draw());
+    public String drawTable() {
+        return table.draw();
     }
 
 }

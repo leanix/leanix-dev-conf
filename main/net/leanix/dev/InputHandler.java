@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
+import net.leanix.dev.Game.Player;
 
 
 public class InputHandler {
@@ -19,14 +20,12 @@ public class InputHandler {
     }
 
 
-    public Entry<Integer, Integer> handleNextInput(String player) {
+    public Entry<Integer, Integer> handleNextInput(Player player) {
             System.out.println(player + "s turn");
             String input = inputScanner.next();
             if (inputIsInvalid(input)) {
                 input = handleInvalidInput();
             }
-
-
             return splitInputString(input);
 
     }
@@ -38,8 +37,18 @@ public class InputHandler {
         return new AbstractMap.SimpleImmutableEntry<>(column, row);
     }
 
-    static boolean inputIsInvalid(String input) {
-        return input.matches("^[abc][012]$");
+    boolean inputIsInvalid(String input) {
+        if(input == null || input.isEmpty()){
+            return true;
+        }
+        boolean matches = input.matches("^[abc][012]$");
+        if(!matches) {
+            //invalid String format
+            return true;
+        }
+        Entry<Integer, Integer> cellCoordinates = splitInputString(input);
+        boolean empty = board.isEmpty(cellCoordinates.getKey(), cellCoordinates.getValue());
+        return !empty;
     }
 
     private String handleInvalidInput() {

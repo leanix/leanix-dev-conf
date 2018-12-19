@@ -15,7 +15,7 @@ public class Board {
      */
     public void setCellState(Coordinate coordinate, int state) {
         if (state < 0 || state > 2) {
-
+            throw new IllegalArgumentException("Illegal state argument: " + state);
         }
         int x = coordinate.getX();
         int y = coordinate.getY();

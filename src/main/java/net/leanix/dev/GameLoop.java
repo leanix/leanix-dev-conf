@@ -19,6 +19,7 @@ public class GameLoop {
         determineStartPlayer();
 
         while(!(board.determineWinner().isPresent() || board.isFull())) {
+            System.out.println(board.toString());
             boolean validPositionFound = false;
             while(!validPositionFound) {
                 printPlayerPrompt();

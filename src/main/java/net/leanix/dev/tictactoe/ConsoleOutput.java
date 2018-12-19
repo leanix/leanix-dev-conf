@@ -2,7 +2,7 @@ package net.leanix.dev.tictactoe;
 
 public class ConsoleOutput {
     public void printBoard(Board board) {
-        for (int y = 2; y >= 0; y--) {
+        for (int y = 0; y < 3; y++) {
             System.out.print(y);
             for (int x = 0; x < 3; x++) {
                 Coordinate coordinate = new Coordinate(x, y);
@@ -28,6 +28,8 @@ public class ConsoleOutput {
 
     private char cellStateToCharacter(int state) {
         return state == 1 ? 'x' :
-          state == 2 ? 'o' : ' '; 
+          state == 2 ? 'o' :
+          state == 0  ? ' ' :
+            '#'; // Only used for testing
     }
 }

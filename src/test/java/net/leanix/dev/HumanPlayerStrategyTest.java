@@ -14,8 +14,14 @@ public class HumanPlayerStrategyTest {
     }
 
     @Test
-    public void doesNotDecodeInput() {
+    public void doesNotDecodeInputWrongColumn() {
         Optional<Pair<Integer, Integer>> result = HumanPlayerStrategy.decode("z1");
+        assertEquals(Optional.empty(), result);
+    }
+
+    @Test
+    public void doesNotDecodeInputWrongRow() {
+        Optional<Pair<Integer, Integer>> result = HumanPlayerStrategy.decode("a3");
         assertEquals(Optional.empty(), result);
     }
 

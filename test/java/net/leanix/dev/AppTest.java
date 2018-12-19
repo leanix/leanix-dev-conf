@@ -1,4 +1,4 @@
-package net.leanix.dev;
+package java.net.leanix.dev;
 
 import static org.junit.Assert.assertTrue;
 

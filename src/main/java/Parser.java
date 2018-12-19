@@ -28,9 +28,15 @@ public class Parser {
     }
 
     private static int numberToRow(char numberChar) {
-        if (numberChar!='1' && numberChar!='2' && numberChar!='3'){
-            throw new IllegalArgumentException("Number must be 1, 2 or 3");
+        switch (numberChar) {
+            case '1':
+                return 0;
+            case '2':
+                return 1;
+            case '3':
+                return 2;
+            default:
+                throw new IllegalArgumentException("Number must be 1, 2 or 3");
         }
-        return Integer.parseInt(numberChar + "") - 1;
     }
 }

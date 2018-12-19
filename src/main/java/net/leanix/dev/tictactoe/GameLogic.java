@@ -66,7 +66,7 @@ public class GameLogic {
     }
 
     private GameState checkCellStates(int[] cellStates) {
-        if (cellStates[0] == 0 && cellStates[1] == 0 && cellStates[2] == 0) {
+        if (cellStates[0] == 0 || cellStates[1] == 0 || cellStates[2] == 0) {
             return GameState.IN_PROGRESS;
         } else if (cellStates[0] == cellStates[1] && cellStates[1] == cellStates[2]) {
             return cellStates[0] == 1 ? GameState.WIN_PLAYER_1 : GameState.WIN_PLAYER_2;

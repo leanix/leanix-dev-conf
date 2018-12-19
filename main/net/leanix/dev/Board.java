@@ -2,8 +2,10 @@ package net.leanix.dev;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.StringJoiner;
 
 public class Board {
 
@@ -120,6 +122,7 @@ public class Board {
     public void setCell(int rowNum, int colNum, Cell cell) {
         Preconditions.checkArgument(colNum < boardDimension && colNum>= 0);
         Preconditions.checkArgument(rowNum < boardDimension && rowNum >= 0);
+        Preconditions.checkArgument(cell != Cell.EMPTY);
 
         boardState[rowNum][colNum] = cell;
     }
@@ -141,5 +144,18 @@ public class Board {
         public Cell getWinningSign() {
             return winningSign;
         }
+    }
+
+    @Override
+    public String toString() {
+        StringJoiner outer = new StringJoiner("-+-+-");
+        for (int i = boardDimension - 1; i >= 0; i--) {
+            StringJoiner sb = new StringJoiner("|");
+            for (int j = 0; j < boardDimension; j++) {
+              sb.add(boardState[i][j].toString());
+            }
+            outer.add(sb.toString());
+        }
+        return outer.toString();
     }
 }

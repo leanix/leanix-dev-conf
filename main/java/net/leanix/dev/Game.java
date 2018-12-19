@@ -7,6 +7,7 @@ import java.util.Random;
 public class Game {
     Board board;
     GameState state;
+    int currentPlayerIndex;
     Player currentPlayer;
     Player[] players = new BasePlayer[2];
 
@@ -21,7 +22,7 @@ public class Game {
     private void determineStartingPlayer() {
         Random rand = new Random();
         int randomNum = rand.nextInt((1 - 0) + 1) + 0;
-        currentPlayer = players.get(randomNum);
+        currentPlayer = players[randomNum];
         System.out.println( currentPlayer.getName() + " starts");
     }
 

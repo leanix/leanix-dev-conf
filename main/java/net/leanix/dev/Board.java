@@ -14,7 +14,7 @@ public class Board {
 
     public boolean attemptMove(Player player, int row, int column) {
 
-        boolean isInbounds = row >= 0 && row < 3 && column >= 0 && columns < 3;
+        boolean isInbounds = row >= 0 && row < 3 && column >= 0 && column < 3;
         boolean isStateEmpty = cells[row][column] == CellState.EMPTY;
         if (isInbounds && isStateEmpty) {
             cells[row][column] = player.getCellState();

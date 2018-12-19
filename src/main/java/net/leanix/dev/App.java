@@ -68,7 +68,7 @@ public class App
         if ("human".equals(argument)) {
             return new StdinPlayer(playerNumber, output);
         } else if ("cpu".equals(argument)) {
-            return new RandomCpuPlayer();
+            return new RandomCpuPlayer(playerNumber, output);
         } else {
             throw new IllegalArgumentException("unknown player type " + argument + " for player " + playerNumber);
         }

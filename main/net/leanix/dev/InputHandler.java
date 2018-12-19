@@ -5,14 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
-import net.leanix.dev.Game.Player;
 
 
 public class InputHandler {
 
     private Scanner inputScanner;
     private Board board;
-    public static final List<String> COLUMN_MAPPING = Arrays.asList("a","b","c");
+    public static final List<String> COLUMN_MAPPING = Arrays.asList("a", "b", "c");
 
     public InputHandler(Board board) {
         this.inputScanner = new Scanner(System.in);
@@ -20,13 +19,12 @@ public class InputHandler {
     }
 
 
-    public Entry<Integer, Integer> handleNextInput(Player player) {
-            System.out.println(player + "s turn");
-            String input = inputScanner.next();
-            if (inputIsInvalid(input)) {
-                input = handleInvalidInput();
-            }
-            return splitInputString(input);
+    public Entry<Integer, Integer> handleNextInput() {
+        String input = inputScanner.next();
+        if (inputIsInvalid(input)) {
+            input = handleInvalidInput();
+        }
+        return splitInputString(input);
 
     }
 
@@ -38,25 +36,25 @@ public class InputHandler {
     }
 
     boolean inputIsInvalid(String input) {
-        if(input == null || input.isEmpty()){
+        if (input == null || input.isEmpty()) {
             return true;
         }
         boolean matches = input.matches("^[abc][012]$");
-        if(!matches) {
+        if (!matches) {
             //invalid String format
             return true;
         }
         Entry<Integer, Integer> cellCoordinates = splitInputString(input);
-        boolean empty = board.isEmpty(cellCoordinates.getKey(), cellCoordinates.getValue());
+        boolean empty = board.isEmpty(cellCoordinates.getValue(), cellCoordinates.getKey());
         return !empty;
     }
 
     private String handleInvalidInput() {
         String input;
-        do{
+        do {
             System.out.println("Invalid move, try again");
             input = inputScanner.next();
-        }while (inputIsInvalid(input));
+        } while (inputIsInvalid(input));
         return input;
     }
 

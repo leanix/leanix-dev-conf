@@ -1,7 +1,9 @@
 package net.leanix.dev;
 
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Random;
+import net.leanix.dev.Board.FinishedState;
 
 public class Game {
 
@@ -15,16 +17,31 @@ public class Game {
     }
 
     public void run() {
+        Optional<FinishedState> finishedState;
         System.out.println("Welcome to Tic-Tac-Toe!");
         defineBeginner();
         do{
             next();
             switchPlayer();
-        } while (!isFinished());
-        printWinner();
+            System.out.println(board.toString());
+            finishedState = board.isFinished();
+        } while (!finishedState.isPresent());
+        printWinner(finishedState.get());
     }
 
-    private void printWinner() {
+    private void printWinner(FinishedState finishedState) {
+        if(finishedState.isDraw()){
+            System.out.println("Draw round.");
+        }else{
+            switch (finishedState.getWinningSign()){
+                case CROSS:
+                    System.out.println("Player 1 wins.");
+                    break;
+                case CIRCLE:
+                    System.out.println("Player 2 wins.");
+                    break;
+            }
+        }
 
     }
 
@@ -38,24 +55,24 @@ public class Game {
         System.out.println(currentPlayer.toString() + " begins");
     }
 
-    public boolean isFinished() {
-        return false;
-    }
-
     private void next() {
-        Entry<Integer, Integer> cellCoordinates = inputHandler.handleNextInput(currentPlayer);
+        System.out.println(currentPlayer + "'s turn");
+        Entry<Integer, Integer> cellCoordinates = inputHandler.handleNextInput();
         markCell(cellCoordinates);
     }
 
     private void switchPlayer() {
         switch (currentPlayer){
-            case Player_1: currentPlayer = Player.Player_2;
-            case Player_2: currentPlayer = Player.Player_1;
+            case Player_1: currentPlayer = Player.Player_2; break;
+            case Player_2: currentPlayer = Player.Player_1; break;
         }
     }
 
     private void markCell(Entry<Integer, Integer> cellCoordinates) {
-
+        switch (currentPlayer) {
+            case Player_1: board.setCell(cellCoordinates.getValue(), cellCoordinates.getKey(), Cell.CROSS);break;
+            case Player_2: board.setCell(cellCoordinates.getValue(), cellCoordinates.getKey(), Cell.CIRCLE);break;
+        }
     }
 
     enum Player {

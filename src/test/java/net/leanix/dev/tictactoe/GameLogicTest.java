@@ -1,9 +1,6 @@
 package net.leanix.dev.tictactoe;
 
 import org.junit.Test;
-import sun.jvm.hotspot.utilities.Assert;
-
-import java.util.Optional;
 
 public class GameLogicTest {
 
@@ -12,7 +9,7 @@ public class GameLogicTest {
     @Test
     public void testEmptyBoard() {
         Board board = new Board();
-        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameState.IN_PROGRESS);
+        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameLogic.GameState.IN_PROGRESS);
     }
 
     @Test
@@ -23,7 +20,7 @@ public class GameLogicTest {
             0, 1, 1,
             2, 1, 2
         });
-        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameState.IN_PROGRESS);
+        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameLogic.GameState.IN_PROGRESS);
     }
 
     @Test
@@ -34,7 +31,7 @@ public class GameLogicTest {
             2, 1, 1,
             2, 1, 2
         });
-        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameState.DRAW);
+        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameLogic.GameState.DRAW);
     }
 
     @Test
@@ -45,7 +42,7 @@ public class GameLogicTest {
             1, 1, 1,
             2, 1, 2
         });
-        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameState.WIN_PLAYER_1);
+        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameLogic.GameState.WIN_PLAYER_1);
     }
 
     @Test
@@ -56,7 +53,7 @@ public class GameLogicTest {
             2, 0, 1,
             2, 1, 0
         });
-        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameState.WIN_PLAYER_2);
+        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameLogic.GameState.WIN_PLAYER_2);
     }
 
     @Test
@@ -67,7 +64,7 @@ public class GameLogicTest {
             1, 2, 1,
             0, 1, 2
         });
-        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameState.WIN_PLAYER_2);
+        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameLogic.GameState.WIN_PLAYER_2);
     }
 
     @Test
@@ -78,7 +75,7 @@ public class GameLogicTest {
             0, 1, 1,
             1, 2, 2
         });
-        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameState.WIN_PLAYER_1);
+        org.junit.Assert.assertEquals(gameLogic.getGameState(board), GameLogic.GameState.WIN_PLAYER_1);
     }
 }
 

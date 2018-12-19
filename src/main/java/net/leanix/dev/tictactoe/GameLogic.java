@@ -75,10 +75,13 @@ public class GameLogic {
         Board board = new Board();
 
         while (true) {
+            output.printBoard(board);
+
             GameState gameState = getGameState(board);
             if (gameState != GameState.IN_PROGRESS) {
                 return gameState;
             }
+
 
             Player currentPlayer = players[currentPlayerIdx - 1];
 
@@ -86,10 +89,15 @@ public class GameLogic {
             while (moveIsInvalid) {
                 Coordinate coordinate = currentPlayer.submitMove(board);
 
-                moveIsInvalid = isValid(coordinate, board);
+                moveIsInvalid = !isValid(coordinate, board);
 
                 if (moveIsInvalid) {
+                    if (!(currentPlayer instanceof StdinPlayer)) {
+                        throw new RuntimeException("Cpu player has submitted illegal move");
+                    }
                     output.printMessage("Invalid move. Please submit correct move.");
+                } else {
+                    board.setCellState(coordinate, currentPlayerIdx);
                 }
             }
 

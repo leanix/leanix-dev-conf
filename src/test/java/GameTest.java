@@ -31,4 +31,10 @@ public class GameTest {
         game.runCommand("a1");
         assertEquals(new GameState(Player.PLAYER_ONE, Message.CELL_NOT_EMPTY), game.getState());
     }
+
+    @Test
+    public void runInvalidCommand() {
+        game.runCommand("foobar");
+        assertEquals(new GameState(Player.PLAYER_TWO, Message.INVALID_COMMAND), game.getState());
+    }
 }

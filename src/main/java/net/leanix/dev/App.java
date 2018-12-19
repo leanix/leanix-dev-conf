@@ -13,16 +13,13 @@ public class App
     public static void main( String[] args )
     {
         ConsoleOutput output = new ConsoleOutput();
-        Board board = new Board();
-        output.printMessage("Empty board:");
-        output.printBoard(board);
-        output.printMessage("Board with B0 being chosen by play 1:");
-        board.setCellState(new Coordinate(1, 0), 1);
-        output.printBoard(board);
 
         Player[] players = determinePlayers(args, output);
-        System.out.println(players.length);
-        System.out.println(Arrays.toString(players));
+
+        GameLogic gameLogic = new GameLogic();
+
+        GameLogic.GameState gameState = gameLogic.runGame(players, output);
+        output.printMessage("" + gameState.name());
     }
 
     public static Player[] determinePlayers(String[] args, ConsoleOutput output) {

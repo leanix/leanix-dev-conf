@@ -2,12 +2,6 @@ package net.leanix.dev.tictactoe;
 
 import java.util.Random;
 
-enum GameState {
-    IN_PROGRESS,
-    DRAW,
-    WIN_PLAYER_1,
-    WIN_PLAYER_2
-}
 
 public class GameLogic {
     public int determineStartPlayer() {
@@ -74,4 +68,44 @@ public class GameLogic {
             return GameState.DRAW;
         }
     }
+
+    public GameState runGame(Player[] players, ConsoleOutput output) {
+        int currentPlayerIdx = determineStartPlayer();
+
+        Board board = new Board();
+
+        while (true) {
+            GameState gameState = getGameState(board);
+            if (gameState != GameState.IN_PROGRESS) {
+                return gameState;
+            }
+
+            Player currentPlayer = players[currentPlayerIdx - 1];
+
+            boolean moveIsInvalid = true;
+            while (moveIsInvalid) {
+                Coordinate coordinate = currentPlayer.submitMove(board);
+
+                moveIsInvalid = isValid(coordinate, board);
+
+                if (moveIsInvalid) {
+                    output.printMessage("Invalid move. Please submit correct move.");
+                }
+            }
+
+            currentPlayerIdx = 3 - currentPlayerIdx;
+        }
+    }
+
+    public boolean isValid(Coordinate coordinate, Board board) {
+        return board.getCellState(coordinate) ==0;
+    }
+
+    public enum GameState {
+        IN_PROGRESS,
+        DRAW,
+        WIN_PLAYER_1,
+        WIN_PLAYER_2
+    }
+
 }

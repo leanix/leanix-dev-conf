@@ -21,7 +21,26 @@ public class Board implements ReadOnlyBoard {
 
     @Override
     public String toString() {
-        throw new RuntimeException();
+        String result = "";
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (data[row][col] == BoardConstants.EMPTY) {
+                    result += ' ';
+                } else {
+                    result += data[row][col].character;
+                }
+                if (col != 2) {
+                    result += '|';
+                }
+            }
+            result += '\n';
+            if (row != 2) {
+                result += "-+-+-";
+            }
+
+            result += '\n';
+        }
+        return result;
     }
 
     @Override

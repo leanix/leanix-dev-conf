@@ -2,7 +2,6 @@ package net.leanix.dev;
 
 import java.util.List;
 import java.util.Random;
-import javafx.util.Pair;
 
 public class CpuPlayer extends BasePlayer implements Player {
 
@@ -12,10 +11,11 @@ public class CpuPlayer extends BasePlayer implements Player {
 
     @Override
     public void move(Board board) {
-        List<Pair<Integer,Integer>> emptyCells = board.getEmptyCells();
+        List<Move> emptyCells = board.getPossibleMoves();
         Random rand = new Random();
         int moveIndex = rand.nextInt(emptyCells.size());
-        Pair<Integer, Integer> nextMove = emptyCells.get(moveIndex);
-        board.attemptMove(this, nextMove.getKey(), nextMove.getValue());
+        Move nextMove = emptyCells.get(moveIndex);
+        board.attemptMove(this, nextMove.getX(), nextMove.getY());
+        System.out.println( getName() + ">" + nextMove.toString());
     }
 }

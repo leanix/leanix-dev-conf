@@ -44,12 +44,12 @@ public class Board {
         return GameState.DRAW;
     }
 
-    public List<Pair<Integer,Integer>> getEmptyCells() {
-        List<Pair<Integer,Integer>> emptyCells = new ArrayList<>();
+    public List<Move> getPossibleMoves() {
+        List<Move> emptyCells = new ArrayList<>();
         for(int i=0;i<3;i++) {
             for(int j=0;j<3;j++) {
                 if(cells[i][j] == CellState.EMPTY) {
-                    emptyCells.add(new Pair<>(i,j));
+                    emptyCells.add(new Move(i,j));
                 }
             }
         }

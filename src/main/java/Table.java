@@ -29,16 +29,21 @@ public class Table {
     }
 
     public boolean isGameOver() {
-        for (int column = 0; column < 3; column++) {
-            if (isColumnWon(column)) {
-                return true;
-            }
-        }
-
-        return false;
+        return isColumnWon(0) || isColumnWon(1) || isColumnWon(2);
     }
 
     private boolean isColumnWon(int column) {
-        return  table[column][0] == table[column][1] && table[column][1] == table[column][2] && table[column][0] != null;
+        int playerOneCount = 0;
+        int playerTwoCount = 0;
+
+        for (int row = 0; row < 3; row++) {
+            if (table[column][row] == Player.PLAYER_ONE) {
+                playerOneCount += 1;
+            } else if (table[column][row] == Player.PLAYER_TWO) {
+                playerTwoCount += 1;
+            }
+        }
+
+        return playerOneCount == 3 || playerTwoCount == 3;
     }
 }

@@ -21,8 +21,8 @@ public class Game {
 
     private void determineStartingPlayer() {
         Random rand = new Random();
-        int randomNum = rand.nextInt((1 - 0) + 1) + 0;
-        currentPlayer = players[randomNum];
+        currentPlayerIndex = rand.nextInt((1 - 0) + 1) + 0;
+        currentPlayer = players[currentPlayerIndex];
         System.out.println( currentPlayer.getName() + " starts");
     }
 
@@ -62,8 +62,13 @@ public class Game {
         while(state == GameState.ONGOING) {
             board.render();
             currentPlayer.move(board);
+            switchPlayers();
             state = board.getUpdatedState();
         }
+    }
+
+    private void switchPlayers() {
+        currentPlayerIndex = 1 - currentPlayerIndex;
     }
 
     public void printResults() {

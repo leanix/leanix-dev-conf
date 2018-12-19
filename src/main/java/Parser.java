@@ -1,14 +1,14 @@
 public class Parser {
 
     public static Coordinate parse(String input) {
-        char letterChar = input.toLowerCase().charAt(0);
-        char numberChar = input.charAt(1);
-       if ( !Character.isLetter(letterChar)){
-           letterChar = input.toLowerCase().charAt(1);
-           numberChar = input.charAt(0);
-       }
+        char firstChar = input.toLowerCase().charAt(0);
+        char secondChar = input.toLowerCase().charAt(1);
 
-        return new Coordinate(letterToColumn(letterChar), numberToRow(numberChar));
+        if (Character.isLetter(firstChar)) {
+            return new Coordinate(letterToColumn(firstChar), numberToRow(secondChar));
+        } else {
+            return new Coordinate(letterToColumn(secondChar), numberToRow(firstChar));
+        }
     }
 
     private static int letterToColumn(char letterChar) {

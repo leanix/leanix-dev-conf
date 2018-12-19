@@ -120,6 +120,7 @@ public class Board {
     public void setCell(int rowNum, int colNum, Cell cell) {
         Preconditions.checkArgument(colNum < boardDimension && colNum>= 0);
         Preconditions.checkArgument(rowNum < boardDimension && rowNum >= 0);
+        Preconditions.checkArgument(cell != Cell.EMPTY);
 
         boardState[rowNum][colNum] = cell;
     }

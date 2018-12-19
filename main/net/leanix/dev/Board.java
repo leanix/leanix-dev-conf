@@ -15,11 +15,11 @@ public class Board {
         {Cell.EMPTY, Cell.EMPTY, Cell.EMPTY}
     };
 
-    public boolean isEmpty(int column, int row) {
+    public boolean isEmpty(int row, int column) {
         Preconditions.checkArgument(column < boardDimension && column >= 0);
         Preconditions.checkArgument(row < boardDimension && row >= 0);
 
-        return boardState[column][row] == Cell.EMPTY;
+        return boardState[row][column] == Cell.EMPTY;
     }
 
     public Optional<FinishedState> isFinished() {

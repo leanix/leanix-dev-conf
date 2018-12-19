@@ -1,4 +1,4 @@
-package java.net.leanix.dev;
+package net.leanix.dev;
 
 public class App {
 

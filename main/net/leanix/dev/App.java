@@ -22,5 +22,6 @@ public class App {
         }
         Game game = new Game(cpuPlayers);
         game.run();
+        System.out.println("Thanks for playing.");
     }
 }

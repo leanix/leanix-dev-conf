@@ -6,7 +6,7 @@ import java.util.Optional;
 public class Board implements ReadOnlyBoard {
     private BoardConstants[][] data;
 
-    public Board() {
+    Board() {
         init();
     }
 
@@ -24,11 +24,22 @@ public class Board implements ReadOnlyBoard {
 
     @Override
     public boolean isFull() {
-        throw new RuntimeException();
+        for (BoardConstants[] row : data) {
+            for (BoardConstants element : row) {
+                if (element.equals(BoardConstants.EMPTY)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
-    public boolean set(char player, int row, int col) {
-        throw new RuntimeException();
+    boolean set(BoardConstants state, int row, int col) {
+        if (data[row][col].equals(BoardConstants.EMPTY)) {
+            data[row][col] = state;
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -23,4 +23,12 @@ public class GameTest {
         game.runCommand("a1");
         assertEquals(new GameState(Player.PLAYER_ONE, Message.ENTER_COMMAND), game.getState());
     }
+
+    @Test
+    public void playInvalidMove() {
+        game.runCommand("a1");
+        assertEquals(new GameState(Player.PLAYER_ONE, Message.ENTER_COMMAND), game.getState());
+        game.runCommand("a1");
+        assertEquals(new GameState(Player.PLAYER_ONE, Message.CELL_NOT_EMPTY), game.getState());
+    }
 }

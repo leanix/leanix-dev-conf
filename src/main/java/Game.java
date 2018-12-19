@@ -13,7 +13,12 @@ public class Game {
     }
 
     public void runCommand(String command) {
-        if (state.player == Player.PLAYER_ONE) {
+        Coordinate coordinate = Parser.parse(command);
+        boolean success = table.insert(state.player, coordinate.column, coordinate.row);
+
+        if (!success) {
+            state = new GameState(state.player, Message.CELL_NOT_EMPTY);
+        } else if (state.player == Player.PLAYER_ONE) {
             state = new GameState(Player.PLAYER_TWO, Message.ENTER_COMMAND);
         } else {
             state = new GameState(Player.PLAYER_ONE, Message.ENTER_COMMAND);

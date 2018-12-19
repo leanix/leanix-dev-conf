@@ -19,6 +19,7 @@ Your task is to implement a working version of Tic-Tac-Toe (https://en.wikipedia
 0 | |
  A B C
 ```
+- The user shall be able to pass via command line if a player is played by a human or by a computer. Example: `-p1 human -p2 cpu`
 
 ### Example session
 ```

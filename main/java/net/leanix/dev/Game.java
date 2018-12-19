@@ -77,5 +77,17 @@ public class Game {
     }
 
     public void printResults() {
+        board.render();
+        switch(state) {
+            case WIN1:
+                System.out.println( "Player 1 has won." );
+                break;
+            case WIN2:
+                System.out.println( "Player 2 has won." );
+                break;
+            case DRAW:
+                System.out.println( "Draw." );
+                break;
+        }
     }
 }

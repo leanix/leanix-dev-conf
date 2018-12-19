@@ -19,7 +19,22 @@ public class App
         GameLogic gameLogic = new GameLogic();
 
         GameLogic.GameState gameState = gameLogic.runGame(players, output);
-        output.printMessage("" + gameState.name());
+
+        String finishingMessage;
+        switch (gameState) {
+            case WIN_PLAYER_1:
+                finishingMessage = "Player 1 won!";
+                break;
+            case WIN_PLAYER_2:
+                finishingMessage = "Player 2 won!";
+                break;
+            case DRAW:
+                finishingMessage = "It's a tie.";
+                break;
+            default:
+                throw new IllegalStateException("It can't happen here.");
+        }
+        output.printMessage("\n" + finishingMessage);
     }
 
     public static Player[] determinePlayers(String[] args, ConsoleOutput output) {

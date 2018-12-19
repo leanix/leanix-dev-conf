@@ -37,4 +37,14 @@ public class GameTest {
         game.runCommand("foobar");
         assertEquals(new GameState(Player.PLAYER_TWO, Message.INVALID_COMMAND), game.getState());
     }
+
+    @Test
+    public void completeGame() {
+        game.runCommand("a1");
+        game.runCommand("b1");
+        game.runCommand("a2");
+        game.runCommand("b2");
+        game.runCommand("a3");
+        assertEquals(new GameState(Player.PLAYER_TWO, Message.GAME_OVER), game.getState());
+    }
 }

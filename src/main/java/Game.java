@@ -19,6 +19,8 @@ public class Game {
 
             if (!success) {
                 state = new GameState(state.player, Message.CELL_NOT_EMPTY);
+            } else if (table.isGameOver()) {
+                state = new GameState(state.player, Message.GAME_OVER);
             } else if (state.player == Player.PLAYER_ONE) {
                 state = new GameState(Player.PLAYER_TWO, Message.ENTER_COMMAND);
             } else {

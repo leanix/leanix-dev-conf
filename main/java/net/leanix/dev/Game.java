@@ -69,6 +69,7 @@ public class Game {
 
     private void switchPlayers() {
         currentPlayerIndex = 1 - currentPlayerIndex;
+        currentPlayer = players[currentPlayerIndex];
     }
 
     public void printResults() {

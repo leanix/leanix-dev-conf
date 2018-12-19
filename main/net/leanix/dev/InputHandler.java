@@ -12,7 +12,7 @@ public class InputHandler {
 
     private Scanner inputScanner;
     private Board board;
-    private static final List<String> COLUMN_MAPPING = Arrays.asList("a","b","c");
+    public static final List<String> COLUMN_MAPPING = Arrays.asList("a","b","c");
 
     public InputHandler(Board board) {
         this.inputScanner = new Scanner(System.in);

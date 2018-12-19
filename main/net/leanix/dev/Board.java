@@ -148,13 +148,13 @@ public class Board {
 
     @Override
     public String toString() {
-        StringJoiner outer = new StringJoiner("-+-+-");
+        StringJoiner outer = new StringJoiner("-+-+-\n");
         for (int i = boardDimension - 1; i >= 0; i--) {
             StringJoiner sb = new StringJoiner("|");
             for (int j = 0; j < boardDimension; j++) {
               sb.add(boardState[i][j].toString());
             }
-            outer.add(sb.toString());
+            outer.add(sb.toString()).add("\n");
         }
         return outer.toString();
     }

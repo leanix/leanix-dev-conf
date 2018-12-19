@@ -29,7 +29,9 @@ public class Table {
     }
 
     public boolean isGameOver() {
-        return isColumnWon(0) || isColumnWon(1) || isColumnWon(2);
+        return isColumnWon(0) || isColumnWon(1) || isColumnWon(2)
+            || isRowWon(0) || isRowWon(1) || isRowWon(2)
+            || isDiagonalWon(true) || isDiagonalWon(false);
     }
 
     private boolean isColumnWon(int column) {
@@ -40,6 +42,53 @@ public class Table {
             if (table[column][row] == Player.PLAYER_ONE) {
                 playerOneCount += 1;
             } else if (table[column][row] == Player.PLAYER_TWO) {
+                playerTwoCount += 1;
+            }
+        }
+
+        return playerOneCount == 3 || playerTwoCount == 3;
+    }
+
+    private boolean isRowWon(int row) {
+        int playerOneCount = 0;
+        int playerTwoCount = 0;
+
+        for (int column = 0; column < 3; column++) {
+            if (table[column][row] == Player.PLAYER_ONE) {
+                playerOneCount += 1;
+            } else if (table[column][row] == Player.PLAYER_TWO) {
+                playerTwoCount += 1;
+            }
+        }
+
+        return playerOneCount == 3 || playerTwoCount == 3;
+    }
+
+    private boolean isDiagonalWon() {
+        int playerOneCount = 0;
+        int playerTwoCount = 0;
+
+        for (int i = 0; i < 3; i++) {
+            if (table[i][i] == Player.PLAYER_ONE) {
+                playerOneCount += 1;
+            } else if (table[i][i] == Player.PLAYER_TWO) {
+                playerTwoCount += 1;
+            }
+        }
+
+        return playerOneCount == 3 || playerTwoCount == 3;
+    }
+
+    private boolean isDiagonalWon(boolean topRight) {
+        int playerOneCount = 0;
+        int playerTwoCount = 0;
+
+        for (int i = 0; i < 3; i++) {
+            Player player = topRight ? table[i][i] : table[2 - i][i];
+
+            if (player == Player.PLAYER_ONE) {
+                playerOneCount += 1;
+            } else if (player == Player.PLAYER_TWO) {
                 playerTwoCount += 1;
             }
         }

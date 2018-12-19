@@ -72,11 +72,31 @@ public class TableTest {
     }
 
     @Test
-    public void winInRow()
+    public void winInColumn()
     {
         table.insert(Player.PLAYER_ONE, 0, 0);
         table.insert(Player.PLAYER_ONE, 0, 1);
         table.insert(Player.PLAYER_ONE, 0, 2);
+
+        assertTrue(table.isGameOver());
+    }
+
+    @Test
+    public void winInRow()
+    {
+        table.insert(Player.PLAYER_ONE, 0, 2);
+        table.insert(Player.PLAYER_ONE, 1, 2);
+        table.insert(Player.PLAYER_ONE, 2, 2);
+
+        assertTrue(table.isGameOver());
+    }
+
+    @Test
+    public void winInDiagonal()
+    {
+        table.insert(Player.PLAYER_ONE, 0, 0);
+        table.insert(Player.PLAYER_ONE, 1, 1);
+        table.insert(Player.PLAYER_ONE, 2, 2);
 
         assertTrue(table.isGameOver());
     }

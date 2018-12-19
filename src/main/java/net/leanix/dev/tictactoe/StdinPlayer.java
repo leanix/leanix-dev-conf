@@ -11,8 +11,13 @@ public class StdinPlayer implements Player {
 
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+    /**
+     *
+     * @param number code that can be compared to game cell state (1 or 2)
+     * @param output
+     */
     public StdinPlayer(int number, ConsoleOutput output) {
-        if (number != 0 && number != 1) {
+        if (number != 1 && number != 2) {
             throw new IllegalArgumentException("invalid player number " + number);
         }
 

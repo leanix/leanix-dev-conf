@@ -1,5 +1,6 @@
-import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
+
+import org.junit.Test;
 
 public class ParserTest {
 
@@ -31,4 +32,48 @@ public class ParserTest {
         assertEquals(new Coordinate(2, 1), Parser.parse("2c"));
         assertEquals(new Coordinate(2, 2), Parser.parse("3c"));
     }
- }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void tooManyNumbers()
+    {
+        Parser.parse("11a");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void tooManyLetters()
+    {
+        Parser.parse("2aa");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void wrongNumber()
+    {
+        Parser.parse("0a");
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void wrongLetter()
+    {
+        Parser.parse("1d");
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void tooShort()
+    {
+        Parser.parse("1");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void emptyString()
+    {
+        Parser.parse("");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void nullString()
+    {
+        Parser.parse(null);
+    }
+}

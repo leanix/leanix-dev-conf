@@ -1,6 +1,9 @@
 public class Parser {
 
     public static Coordinate parse(String input) {
+        if (input==null || input.length()!=2 ){
+            throw new IllegalArgumentException("Invalid input");
+        }
         char firstChar = input.toLowerCase().charAt(0);
         char secondChar = input.toLowerCase().charAt(1);
 
@@ -25,6 +28,9 @@ public class Parser {
     }
 
     private static int numberToRow(char numberChar) {
+        if (numberChar!='1' && numberChar!='2' && numberChar!='3'){
+            throw new IllegalArgumentException("Number must be 1, 2 or 3");
+        }
         return Integer.parseInt(numberChar + "") - 1;
     }
 }

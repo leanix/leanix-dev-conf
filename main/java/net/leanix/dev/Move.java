@@ -12,8 +12,8 @@ public class Move {
     }
 
     public Move(char column, int row) throws OperationNotSupportedException {
-        this.y = row;
-        this.x = getXMapping(column);
+        this.y = getXMapping(column);
+        this.x = 2-row;
     }
 
     private int getXMapping(char c) throws OperationNotSupportedException {

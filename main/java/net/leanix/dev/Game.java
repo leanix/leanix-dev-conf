@@ -1,8 +1,7 @@
 package net.leanix.dev;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import javax.naming.OperationNotSupportedException;
 
 public class Game {
     Board board;
@@ -62,8 +61,13 @@ public class Game {
         while(state == GameState.ONGOING) {
             board.render();
             currentPlayer.move(board);
+
+            try {
+                state = board.getUpdatedState();
+            } catch (OperationNotSupportedException ex) {
+                System.out.println(ex.getMessage());
+            }
             switchPlayers();
-            state = board.getUpdatedState();
         }
     }
 

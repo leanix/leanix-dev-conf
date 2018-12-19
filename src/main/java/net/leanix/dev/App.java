@@ -39,7 +39,7 @@ public class App
 
     public static Player[] determinePlayers(String[] args, ConsoleOutput output) {
         if (args.length == 0) {
-            return new Player[]{new StdinPlayer(0, output), new StdinPlayer(1, output)};
+            return new Player[]{new StdinPlayer(1, output), new StdinPlayer(2, output)};
         } else if (args.length == 1 || args.length == 3 || args.length > 4) {
             throw new IllegalArgumentException("need 0, 2, or 4 cmd line arguments");
         } else {

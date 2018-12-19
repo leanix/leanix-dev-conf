@@ -44,6 +44,16 @@ public class Board implements ReadOnlyBoard {
     }
 
     @Override
+    public int rowCount() {
+        return data.length;
+    }
+
+    @Override
+    public int colCount() {
+        return data[0].length;
+    }
+
+    @Override
     public boolean isFull() {
         for (BoardConstants[] row : data) {
             for (BoardConstants element : row) {

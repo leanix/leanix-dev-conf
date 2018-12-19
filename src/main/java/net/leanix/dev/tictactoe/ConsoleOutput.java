@@ -22,6 +22,10 @@ public class ConsoleOutput {
         System.out.println(message);
     }
 
+    public void prompt(String prompt) {
+        System.out.print(prompt);
+    }
+
     private char cellStateToCharacter(int state) {
         return state == 1 ? 'x' :
           state == 2 ? 'o' : ' '; 

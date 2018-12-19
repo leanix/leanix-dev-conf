@@ -24,7 +24,7 @@ public class StdinPlayer implements Player {
     public Coordinate submitMove(Board board) {
         Optional<Coordinate> coordinate = Optional.empty();
         while (!coordinate.isPresent()) {
-            output.printMessage("\nPlayer " + ownNumber + '>');
+            output.prompt("\nPlayer " + ownNumber + '>');
             String in = null;
             try {
                 in = reader.readLine();

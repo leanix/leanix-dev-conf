@@ -10,11 +10,11 @@ public class GameTest {
     @Before
     public void setup() {
         Table table = new Table();
-        game = new Game(table);
+        game = new Game(table, Player.PLAYER_TWO);
     }
 
     @Test
     public void initialState() {
-        assertEquals(game.getState(), new GameState(Player.PLAYER_ONE, Message.ENTER_COMMAND));
+        assertEquals(game.getState(), new GameState(Player.PLAYER_TWO, Message.ENTER_COMMAND));
     }
 }

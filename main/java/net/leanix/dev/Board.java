@@ -52,16 +52,16 @@ public class Board {
 
         // every column
         for (int i = 0; i < 3; i++) {
-            if (cells[0][i] == cells[1][i] && cells[0][i] == cells[2][i]) {
+            if (cells[0][i] != CellState.EMPTY && cells[0][i] == cells[1][i] && cells[0][i] == cells[2][i]) {
                 return mapCellState(cells[0][i]);
             }
         }
 
         // diagonal
-        if (cells[0][0] == cells[1][1] && cells[0][0] == cells[2][2]) {
+        if (cells[0][0] != CellState.EMPTY && cells[0][0] == cells[1][1] && cells[0][0] == cells[2][2]) {
             return mapCellState(cells[0][0]);
         }
-        if (cells[0][2] == cells[1][1] && cells[0][2] == cells[2][0]) {
+        if (cells[0][2] != CellState.EMPTY && cells[0][2] == cells[1][1] && cells[0][2] == cells[2][0]) {
             return mapCellState(cells[0][2]);
         }
 

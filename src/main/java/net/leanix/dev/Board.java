@@ -75,7 +75,10 @@ public class Board implements ReadOnlyBoard {
 
     @Override
     public Optional<BoardConstants> get(int row, int col) {
-        throw new RuntimeException();
+        if ((row >= 0 && row <= 2) && (col >= 0 && col <= 2)) {
+            return Optional.of(data[row][col]);
+        }
+        return Optional.empty();
     }
 
     public Optional<BoardConstants> determineWinner() {

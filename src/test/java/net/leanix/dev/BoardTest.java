@@ -146,4 +146,26 @@ public class BoardTest {
         assertEquals(col[1], BoardConstants.PLAYER_TWO);
         assertEquals(col[2], BoardConstants.PLAYER_ONE);
     }
+
+    @Test
+    public void getsElement() {
+        Board board = new Board();
+        board.set(BoardConstants.PLAYER_ONE, 0, 0);
+        board.set(BoardConstants.PLAYER_TWO, 1, 0);
+        board.set(BoardConstants.PLAYER_ONE, 2, 0);
+
+        Optional<BoardConstants> element = board.get(0, 0);
+        assertEquals(Optional.of(BoardConstants.PLAYER_ONE), element);
+    }
+
+    @Test
+    public void doesNotGetElement() {
+        Board board = new Board();
+        board.set(BoardConstants.PLAYER_ONE, 0, 0);
+        board.set(BoardConstants.PLAYER_TWO, 1, 0);
+        board.set(BoardConstants.PLAYER_ONE, 2, 0);
+
+        Optional<BoardConstants> element = board.get(3, 0);
+        assertEquals(Optional.empty(), element);
+    }
 }

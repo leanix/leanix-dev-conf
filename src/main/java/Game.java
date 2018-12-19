@@ -12,4 +12,12 @@ public class Game {
         return state;
     }
 
+    public void runCommand(String command) {
+        if (state.player == Player.PLAYER_ONE) {
+            state = new GameState(Player.PLAYER_TWO, Message.ENTER_COMMAND);
+        } else {
+            state = new GameState(Player.PLAYER_ONE, Message.ENTER_COMMAND);
+        }
+    }
+
 }

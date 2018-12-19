@@ -15,6 +15,12 @@ public class GameTest {
 
     @Test
     public void initialState() {
-        assertEquals(game.getState(), new GameState(Player.PLAYER_TWO, Message.ENTER_COMMAND));
+        assertEquals(new GameState(Player.PLAYER_TWO, Message.ENTER_COMMAND), game.getState());
+    }
+
+    @Test
+    public void playSingleMove() {
+        game.runCommand("a1");
+        assertEquals(new GameState(Player.PLAYER_ONE, Message.ENTER_COMMAND), game.getState());
     }
 }

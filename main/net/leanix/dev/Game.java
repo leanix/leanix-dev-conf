@@ -10,9 +10,12 @@ public class Game {
     private Player currentPlayer;
     private InputHandler inputHandler;
     private Board board;
+    private Player computerPlayer;
 
-    public Game(InputHandler inputHandler, Board board) {
-        this.inputHandler = inputHandler;
+    public Game(Player computerPlayer) {
+        Board board = new Board();
+        this.inputHandler = new InputHandler(board);
+        this.computerPlayer = computerPlayer;
         this.board = board;
     }
 
@@ -57,7 +60,14 @@ public class Game {
 
     private void next() {
         System.out.println(currentPlayer + "'s turn");
-        Entry<Integer, Integer> cellCoordinates = inputHandler.handleNextInput();
+        Entry<Integer, Integer> cellCoordinates;
+        if(currentPlayer == computerPlayer){
+            do{
+                cellCoordinates = CPU.chooseCellCoordinates();
+            }while(board.isEmpty(cellCoordinates.getValue(), cellCoordinates.getKey()));
+        }else {
+            cellCoordinates = inputHandler.handleNextInput();
+        }
         markCell(cellCoordinates);
     }
 

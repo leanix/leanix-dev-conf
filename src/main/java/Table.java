@@ -28,4 +28,17 @@ public class Table {
         return true;
     }
 
+    public boolean isGameOver() {
+        for (int column = 0; column < 3; column++) {
+            if (isColumnWon(column)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isColumnWon(int column) {
+        return  table[column][0] == table[column][1] && table[column][1] == table[column][2] && table[column][0] != null;
+    }
 }

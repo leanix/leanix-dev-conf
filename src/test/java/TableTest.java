@@ -62,4 +62,24 @@ public class TableTest {
         assertFalse(table.insert(Player.PLAYER_ONE, 0, 0));
     }
 
+    @Test
+    public void gameNotOver()
+    {
+        table.insert(Player.PLAYER_ONE, 0, 0);
+        table.insert(Player.PLAYER_ONE, 0, 1);
+
+        assertFalse(table.isGameOver());
+    }
+
+    @Test
+    public void winInRow()
+    {
+        table.insert(Player.PLAYER_ONE, 0, 0);
+        table.insert(Player.PLAYER_ONE, 0, 1);
+        table.insert(Player.PLAYER_ONE, 0, 2);
+
+        assertTrue(table.isGameOver());
+    }
+
+
 }

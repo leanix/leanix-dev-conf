@@ -102,7 +102,7 @@ public class Board {
             : Optional.empty();
     }
 
-    private boolean isBoardFull() {
+    protected boolean isBoardFull() {
         for (int i = 0; i < boardDimension; i++) {
             for (int j = 0; j < boardDimension; j++) {
                 if (boardState[i][j] == Cell.EMPTY) {
@@ -117,14 +117,12 @@ public class Board {
         this.boardState = boardState;
     }
 
-    private static class FinishedState {
+    public static class FinishedState {
 
         private final boolean isDraw;
         private final Cell winningSign;
 
         public FinishedState(boolean isDraw, Cell winningSign) {
-            Preconditions.checkArgument(winningSign != Cell.EMPTY);
-
             this.isDraw = isDraw;
             this.winningSign = winningSign;
         }

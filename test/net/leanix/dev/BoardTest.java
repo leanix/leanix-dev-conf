@@ -3,6 +3,8 @@ package net.leanix.dev;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Optional;
+import net.leanix.dev.Board.FinishedState;
 import org.junit.Test;
 
 public class BoardTest {
@@ -75,5 +77,46 @@ public class BoardTest {
 
         assertFalse(b.checkDiagonal().isPresent());
         assertTrue(b.checkReverseDiagonal().isPresent());
+    }
+
+    @Test
+    public void isBoardFull_empty() {
+        Board b = new Board();
+        b.setBoardState(new Cell[][]{
+            { Cell.CROSS, Cell.CIRCLE, Cell.CROSS},
+            { Cell.CROSS, Cell.CROSS, Cell.EMPTY},
+            { Cell.CROSS, Cell.CIRCLE, Cell.CIRCLE}
+        });
+
+        assertFalse(b.isBoardFull());
+
+        b.setBoardState(new Cell[][]{
+            { Cell.CROSS, Cell.CIRCLE, Cell.CROSS},
+            { Cell.CROSS, Cell.CROSS, Cell.CIRCLE},
+            { Cell.CROSS, Cell.CIRCLE, Cell.CIRCLE}
+        });
+        assertTrue(b.isBoardFull());
+    }
+
+    @Test
+    public void isDraw() {
+        Board b = new Board();
+        b.setBoardState(new Cell[][]{
+            { Cell.CROSS, Cell.CIRCLE, Cell.CIRCLE},
+            { Cell.CIRCLE, Cell.CROSS, Cell.CROSS},
+            { Cell.CROSS, Cell.CIRCLE, Cell.CIRCLE}
+        });
+
+        Optional<FinishedState> finished = b.isFinished();
+        assertTrue(finished.isPresent());
+        assertTrue(finished.get().isDraw());
+
+
+        b.setBoardState(new Cell[][]{
+            { Cell.CROSS, Cell.CIRCLE, Cell.CROSS},
+            { Cell.CIRCLE, Cell.CIRCLE, Cell.CIRCLE},
+            { Cell.CIRCLE, Cell.CIRCLE, Cell.CROSS}
+        });
+        assertTrue(b.isBoardFull());
     }
 }

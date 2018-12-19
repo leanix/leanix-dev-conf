@@ -1,8 +1,8 @@
 package net.leanix.dev;
 
-public class HumanPlayer extends BasePlayer implements Player {
+public class CpuPlayer extends BasePlayer implements Player {
 
-    public HumanPlayer(String name, CellState symbol) {
+    public CpuPlayer(String name, CellState symbol) {
         super(name, symbol);
     }
 

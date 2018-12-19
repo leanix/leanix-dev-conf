@@ -8,7 +8,7 @@ public class Game {
     Board board;
     GameState state;
     Player currentPlayer;
-    List<Player> players = new ArrayList<>();
+    Player[] players = new BasePlayer[2];
 
     public Game(String[] args) {
         initializePlayers(args);
@@ -30,30 +30,30 @@ public class Game {
         if(argsLength == 4) {
             String type = args[1];
             if(type.equals(PlayerType.HUMAN)) {
-                players.add(new HumanPlayer("Player 1", CellState.X)); // player 1
+                players[0] = new HumanPlayer("Player 1", CellState.X); // player 1
             }
             else if(type.equals(PlayerType.CPU)) {
-                players.add(new CpuPlayer("Player 1", CellState.X)); // player 1
+                players[0] = new CpuPlayer("Player 1", CellState.X); // player 1
             }
             else {
                 System.out.println( "Invalid argument for p1. P1 default type is human." );
-                players.add(new HumanPlayer("Player 1", CellState.X)); // player 1
+                players[0] = new HumanPlayer("Player 1", CellState.X); // player 1
             }
             type = args[3];
             if(type.equals(PlayerType.HUMAN)) {
-                players.add(new HumanPlayer("Player 2", CellState.O)); // player 2
+                players[1] = new HumanPlayer("Player 2", CellState.O); // player 2
             }
             else if(type.equals(PlayerType.CPU)) {
-                players.add(new CpuPlayer("Player 2", CellState.O)); // player 2
+                players[1] = new CpuPlayer("Player 2", CellState.O); // player 2
             }
             else {
                 System.out.println( "Invalid argument for p2. P2 default type is human." );
-                players.add(new HumanPlayer("Player 2", CellState.O)); // player 2
+                players[1] = new HumanPlayer("Player 2", CellState.O); // player 2
             }
         }
         else {
-            players.add(new HumanPlayer("Player 1", CellState.X)); // player 1
-            players.add(new HumanPlayer("Player 2", CellState.O)); // player 2
+            players[0] = new HumanPlayer("Player 1", CellState.X); // player 1
+            players[1] = new HumanPlayer("Player 2", CellState.O); // player 2
         }
     }
 

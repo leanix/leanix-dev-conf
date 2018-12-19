@@ -15,20 +15,26 @@ public class Game {
     public void runCommand(String command) {
         try {
             Coordinate coordinate = Parser.parse(command);
-            boolean success = table.insert(state.player, coordinate.column, coordinate.row);
-
-            if (!success) {
-                state = new GameState(state.player, Message.CELL_NOT_EMPTY);
-            } else if (table.isGameOver()) {
-                state = new GameState(state.player, Message.GAME_OVER);
-            } else if (state.player == Player.PLAYER_ONE) {
-                state = new GameState(Player.PLAYER_TWO, Message.ENTER_COMMAND);
-            } else {
-                state = new GameState(Player.PLAYER_ONE, Message.ENTER_COMMAND);
-            }
+            boolean insertSuccessful = table.insert(state.player, coordinate.column, coordinate.row);
+            state = nextState(insertSuccessful);
         } catch(IllegalArgumentException e) {
             state = new GameState(state.player, Message.INVALID_COMMAND);
         }
+    }
+
+    private GameState nextState(boolean insertSuccessful) {
+        if (!insertSuccessful) {
+            return new GameState(state.player, Message.CELL_NOT_EMPTY);
+        } else if (table.isGameOver()) {
+            return new GameState(state.player, Message.GAME_OVER);
+        } else {
+            Player nextPlayer = state.player == Player.PLAYER_ONE ? Player.PLAYER_TWO : Player.PLAYER_ONE;
+            return new GameState(nextPlayer, Message.ENTER_COMMAND);
+        }
+    }
+
+    public void printTable() {
+        System.out.println(table.draw());
     }
 
 }

@@ -12,7 +12,6 @@ public class HumanPlayerStrategy implements PlayerStrategy {
         boolean gotResult = false;
         Pair<Integer, Integer> result = null;
         while (!gotResult) {
-            System.out.print("Enter a position: ");
             String line = scanner.nextLine(); // input structure: letter|number
 
             Optional<Pair<Integer, Integer>> decodedResult = decode(line);
@@ -50,6 +49,10 @@ public class HumanPlayerStrategy implements PlayerStrategy {
         }
 
         int row = Character.getNumericValue(rowChar);
+        if (row > 2) {
+            System.out.println("Invalid position.");
+            return Optional.empty();
+        }
         return Optional.of(new Pair<>(row, col));
     }
 }

@@ -19,12 +19,20 @@ public class GameLoop {
         determineStartPlayer();
 
         while(!(board.determineWinner().isPresent() || board.isFull())) {
-            Pair<Integer,Integer> coordinates = players.get(currentPlayer).getNextMove(board);
-            board.set(currentPlayer, coordinates.getKey(),coordinates.getValue());
+            boolean validPositionFound = false;
+            while(!validPositionFound) {
+                printPlayerPrompt();
+                Pair<Integer,Integer> coordinates = players.get(currentPlayer).getNextMove(board);
+                if (!board.set(currentPlayer, coordinates.getKey(),coordinates.getValue())) {
+                    System.out.println("Position already set");
+                } else {
+                    validPositionFound = true;
+                }
+            }
             nextPlayer();
         }
 
-        Optional<Character> winner = board.determineWinner();
+        Optional<BoardConstants> winner = board.determineWinner();
         if (winner.isPresent()) {
             winner.ifPresent(player -> {
                 System.out.println(player + " has won!");
@@ -49,6 +57,14 @@ public class GameLoop {
             currentPlayer = BoardConstants.PLAYER_TWO;
         } else {
             currentPlayer = BoardConstants.PLAYER_ONE;
+        }
+    }
+
+    private void printPlayerPrompt() {
+        if (currentPlayer == BoardConstants.PLAYER_ONE) {
+            System.out.print("Player 1>");
+        } else {
+            System.out.print("Player 2>");
         }
     }
 }

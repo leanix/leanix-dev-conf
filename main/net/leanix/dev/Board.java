@@ -54,7 +54,7 @@ public class Board {
     protected Optional<FinishedState> checkReverseDiagonal() {
         Cell[] reverseDiagonalArray = new Cell[boardDimension];
         for (int j = boardDimension - 1; j >= 0; j--) {
-            reverseDiagonalArray[boardDimension - j - 1] = boardState[j - boardDimension - 1][j];
+            reverseDiagonalArray[boardDimension - j - 1] = boardState[boardDimension - j - 1][j];
         }
         return getFinishedState(reverseDiagonalArray);
     }

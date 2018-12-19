@@ -64,4 +64,16 @@ public class BoardTest {
         assertFalse(b.checkReverseDiagonal().isPresent());
     }
 
+    @Test
+    public void isFinished_finishingReverseDiagonal_win() {
+        Board b = new Board();
+        b.setBoardState(new Cell[][]{
+            { Cell.CROSS, Cell.CIRCLE, Cell.CROSS},
+            { Cell.CROSS, Cell.CROSS, Cell.EMPTY},
+            { Cell.CROSS, Cell.EMPTY, Cell.CIRCLE}
+        });
+
+        assertFalse(b.checkDiagonal().isPresent());
+        assertTrue(b.checkReverseDiagonal().isPresent());
+    }
 }

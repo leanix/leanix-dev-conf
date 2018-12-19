@@ -65,7 +65,7 @@ public class Game {
         if(computerPlayer.contains(currentPlayer)){
             do{
                 cellCoordinates = CPU.chooseCellCoordinates();
-            }while(board.isEmpty(cellCoordinates.getValue(), cellCoordinates.getKey()));
+            }while(!board.isEmpty(cellCoordinates.getValue(), cellCoordinates.getKey()));
         }else {
             cellCoordinates = inputHandler.handleNextInput();
         }

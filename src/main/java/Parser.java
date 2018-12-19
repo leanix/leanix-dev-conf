@@ -3,6 +3,10 @@ public class Parser {
     public static Coordinate parse(String input) {
         char letterChar = input.toLowerCase().charAt(0);
         char numberChar = input.charAt(1);
+       if ( !Character.isLetter(letterChar)){
+           letterChar = input.toLowerCase().charAt(1);
+           numberChar = input.charAt(0);
+       }
 
         return new Coordinate(letterToColumn(letterChar), numberToRow(numberChar));
     }

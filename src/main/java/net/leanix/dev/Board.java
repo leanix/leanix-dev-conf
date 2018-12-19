@@ -1,9 +1,21 @@
 package net.leanix.dev;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 public class Board implements ReadOnlyBoard {
-    private char[][] data = new char[3][3];
+    private BoardConstants[][] data;
+
+    public Board() {
+        init();
+    }
+
+    private void init() {
+        data = new BoardConstants[3][3];
+        for (BoardConstants[] row : data) {
+            Arrays.fill(row, BoardConstants.EMPTY);
+        }
+    }
 
     @Override
     public String toString() {

@@ -2,7 +2,7 @@ package net.leanix.dev;
 
 import javafx.util.Pair;
 
-public class HumanPlayer implements Player {
+public class HumanPlayerStrategy implements PlayerStrategy {
 
     @Override
     public Pair<Integer, Integer> getNextMove(ReadOnlyBoard board) {

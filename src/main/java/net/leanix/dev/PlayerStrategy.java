@@ -2,6 +2,6 @@ package net.leanix.dev;
 
 import javafx.util.Pair;
 
-public interface Player {
+public interface PlayerStrategy {
     Pair<Integer, Integer> getNextMove(ReadOnlyBoard board);
 }

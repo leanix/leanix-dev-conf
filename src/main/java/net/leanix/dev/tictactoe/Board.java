@@ -1,6 +1,6 @@
 package net.leanix.dev.tictactoe;
 
-public class Model {
+public class Board {
 
     /**
      *

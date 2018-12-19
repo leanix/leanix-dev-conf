@@ -154,7 +154,7 @@ public class Board {
             for (int j = 0; j < boardDimension; j++) {
               sb.add(boardState[i][j].toString());
             }
-            outer.add(sb.toString()).add("\n");
+            outer.add(sb.toString() + "\n");
         }
         return outer.toString();
     }
